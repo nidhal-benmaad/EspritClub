@@ -14,7 +14,7 @@
             <td>{{ s.email }}</td>
             <td>{{ s.classroom }}</td>
             <td><a href="#">Update</a>
-                <a href="#">Remove</a>
+                <a href="{{ path('deleteStudent',{'id':s.id}) }}">Remove</a>
                 <a href="#">Show</a></td>
         </tr>
     {% endfor %}

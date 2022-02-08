@@ -45,6 +45,18 @@ class StudentController extends AbstractController
             return $this->redirectToRoute('studentList');
         }
 
-        return $this->render("student/add.html.twig",array('studentForm'=>$form->createView()));
+        return $this->render("student/add.html.twig", array('studentForm' => $form->createView()));
+    }
+
+    /**
+     * @Route("/deleteStudent/{id}", name="deleteStudent")
+     */
+    public function deleteStudent($id): Response
+    {
+        $student = $this->getDoctrine()->getRepository(Student::class)->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $this->getDoctrine()->getManager()->remove($student);
+        $em->flush();
+        return $this->redirectToRoute("studentList");
     }
 }
